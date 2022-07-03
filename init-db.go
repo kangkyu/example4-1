@@ -1,11 +1,11 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
-	"os"
 	"log"
-	"context"
+	"os"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 
@@ -15,12 +15,11 @@ import (
 )
 
 type Movie struct {
-	ID string 
+	ID   string
 	Name string
 }
 
 func main() {
-
 
 	cfg, err := config.LoadDefaultConfig(
 		context.TODO(),
@@ -62,15 +61,15 @@ func readMovies(fileName string) ([]Movie, error) {
 
 func insertMovie(cfg aws.Config, movie Movie) error {
 	itemValue := make(map[string]types.AttributeValue, 1)
-	itemValue["ID"] = &types.AttributeValueMemberS{ Value: movie.ID }
-	itemValue["Name"] = &types.AttributeValueMemberS{ Value: movie.Name }
+	itemValue["ID"] = &types.AttributeValueMemberS{Value: movie.ID}
+	itemValue["Name"] = &types.AttributeValueMemberS{Value: movie.Name}
 
 	svc := dynamodb.NewFromConfig(cfg)
 	_, err := svc.PutItem(
 		context.TODO(),
 		&dynamodb.PutItemInput{
 			TableName: aws.String("movies"),
-			Item: itemValue,
+			Item:      itemValue,
 		},
 	)
 	if err != nil {
