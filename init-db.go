@@ -14,6 +14,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 )
 
+// Movie entity
 type Movie struct {
 	ID   string
 	Name string
