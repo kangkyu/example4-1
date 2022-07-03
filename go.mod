@@ -1,4 +1,4 @@
-module example.com/m
+module github.com/kangkyu/example4-1
 
 go 1.18
 
