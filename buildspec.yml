@@ -9,13 +9,13 @@ phases:
     commands:
       - mkdir -p "/go/src/$(dirname ${PACKAGE})"
       - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}"
-      - go get -u golang.org/x/lint
+      - curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.43.0
 
   pre_build:
     commands:
       - cd "/go/src/${PACKAGE}"
       - go mod download
-      - golint -set_exit_status
+      - ./bin/golangci-lint run
       - go vet .
       - go test .
 

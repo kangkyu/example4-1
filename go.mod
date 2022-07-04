@@ -1,6 +1,6 @@
 module github.com/kangkyu/example4-1
 
-go 1.18
+go 1.17
 
 require (
 	github.com/aws/aws-lambda-go v1.32.1
