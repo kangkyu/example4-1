@@ -15,7 +15,7 @@ phases:
     commands:
       - cd "/go/src/${PACKAGE}"
       - go mod download
-      - ./bin/golangci-lint run
+      - golangci-lint run
       - go vet .
       - go test .
 
