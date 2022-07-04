@@ -9,7 +9,7 @@ phases:
     commands:
       - mkdir -p "/go/src/$(dirname ${PACKAGE})"
       - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}"
-      - curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.43.0
+      - go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.46.2
 
   pre_build:
     commands:
